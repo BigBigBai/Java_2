@@ -1,9 +1,8 @@
 package bigbigbai._04_list._02_design2.doubly;
 
 import bigbigbai._04_list._02_design2.AbstractList;
-import bigbigbai._04_list._02_design2.singly.SingleLinkedList;
 
-public class LinkedList<E> extends AbstractList<E> {
+public class DoublyCircularLinkedList<E> extends AbstractList<E> {
     private Node<E> first;
     private Node<E> last;
 
@@ -15,20 +14,7 @@ public class LinkedList<E> extends AbstractList<E> {
         size = 0;
     }
 
-    private Node<E> node(int index) {
-        Node<E> node;
-
-        if (index < (size >> 1)) {
-            node = first;
-            for (int i = 0; i < index; i++) node = node.next;
-        } else {
-            node = last;
-            for (int i = size - 1; i > index; i--) node = node.prev;
-        }
-
-        return node;
-    }
-
+    //todo
     @Override
     public void add(int index, E element) {
         rangeCheckForAdd(index);
@@ -70,6 +56,7 @@ public class LinkedList<E> extends AbstractList<E> {
         return oldVal;
     }
 
+    //todo
     @Override
     public E remove(int index) {
         rangeCheck(index);
@@ -79,7 +66,9 @@ public class LinkedList<E> extends AbstractList<E> {
         Node<E> prevNode = node.prev;
         Node<E> nextNode = node.next;
 
-        if (index == 0) first = nextNode;// head
+        if (index == 0) {
+            first = nextNode;// head
+        }
         else prevNode.next = nextNode;
 
         if (index == size - 1) last = prevNode;// tail
@@ -107,6 +96,20 @@ public class LinkedList<E> extends AbstractList<E> {
 
         }
         return ELEMENT_NOT_FOUND;
+    }
+
+    private Node<E> node(int index) {
+        Node<E> node;
+
+        if (index < (size >> 1)) {
+            node = first;
+            for (int i = 0; i < index; i++) node = node.next;
+        } else {
+            node = last;
+            for (int i = size - 1; i > index; i--) node = node.prev;
+        }
+
+        return node;
     }
 
     private static class Node<E> {

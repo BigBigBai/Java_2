@@ -2,9 +2,10 @@ package bigbigbai._04_list._02_design2.doubly;
 
 import bigbigbai._04_list._02_design2.AbstractList;
 
-public class DoublyCircularLinkedList<E> extends AbstractList<E> {
+public class JosephusRing<E> extends AbstractList<E> {
     private Node<E> first;
     private Node<E> last;
+    private Node<E> current;
 
 
     @Override
@@ -63,31 +64,6 @@ public class DoublyCircularLinkedList<E> extends AbstractList<E> {
     }
 
     @Override
-    public E remove(int index) {
-        rangeCheck(index);
-        Node<E> node = node(index);
-
-        // only one node
-        if (size == 1) {
-            first = null;
-            last = null;
-        } else {
-            // current
-            Node<E> prevNode = node.prev;
-            Node<E> nextNode = node.next;
-
-            prevNode.next = nextNode;
-            nextNode.prev = prevNode;
-
-            if (index == 0) first = nextNode;// head
-            if (index == size - 1) last = prevNode;// tail
-        }
-
-        size--;
-        return node.element;
-    }
-
-    @Override
     public int indexOf(E element) {
         if (element == null) {
             Node<E> node = first;
@@ -132,5 +108,57 @@ public class DoublyCircularLinkedList<E> extends AbstractList<E> {
             this.prev = prev;
             this.next = next;
         }
+    }
+
+    public void reset() {
+        current = first;
+    }
+
+    public E next() {
+        if (current == null) return null;
+        current = current.next;
+        return current.element;
+    }
+
+    private E remove(Node<E> current) {
+        // only one node
+        if (size == 1) {
+            first = null;
+            last = null;
+        } else {
+            // current
+            Node<E> prevNode = current.prev;
+            Node<E> nextNode = current.next;
+
+            prevNode.next = nextNode;
+            nextNode.prev = prevNode;
+
+            if (current == first) first = nextNode;// head
+            if (current == last) last = prevNode;// tail
+        }
+
+        size--;
+        return current.element;
+    }
+
+    @Override
+    public E remove(int index) {
+        rangeCheck(index);
+        Node<E> node = node(index);
+
+        return remove(node);
+    }
+
+    public E remove() {
+        if (current == null) return null;
+
+        Node<E> next = current.next;
+        E remove = remove(current);
+
+        //only one node
+        if (size == 0) current = null;
+        else current = next;
+
+        return remove;
     }
 }

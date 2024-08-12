@@ -1,7 +1,6 @@
 package bigbigbai._04_list._02_design2.doubly;
 
 import bigbigbai._04_list._02_design2.AbstractList;
-import bigbigbai._04_list._02_design2.singly.SingleLinkedList;
 
 public class LinkedList<E> extends AbstractList<E> {
     private Node<E> first;

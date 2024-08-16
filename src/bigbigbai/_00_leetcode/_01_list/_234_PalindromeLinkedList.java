@@ -3,6 +3,12 @@ package bigbigbai._00_leetcode._01_list;
 /**
  * https://leetcode.cn/problems/palindrome-linked-list/description/
  * @author bigbigbai
+ *
+ * 思路：
+ * 1.通过快慢指针找到单链表中点
+ * 2.反转右半部分
+ * 3.设定2个指针从两端向中间遍历, 在遍历的过程中只要有一次不想等则return false
+ * 4.恢复现场
  */
 public class _234_PalindromeLinkedList {
 
@@ -31,7 +37,6 @@ public class _234_PalindromeLinkedList {
 
         //4.恢复现场
         reverseList(newHead);
-
 
         return true;
     }

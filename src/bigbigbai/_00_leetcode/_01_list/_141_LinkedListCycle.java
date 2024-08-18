@@ -2,7 +2,6 @@ package bigbigbai._00_leetcode._01_list;
 
 /**
  * https://leetcode.cn/problems/linked-list-cycle/description/
- *
  * @bigbigbai
  * dummy node O(1)
  *

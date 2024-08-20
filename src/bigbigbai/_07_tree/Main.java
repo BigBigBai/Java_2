@@ -24,6 +24,18 @@ public class Main {
 //        bt.inOrderTraversal1(root);
 //        bt.postOrderTraversal(root);
 //        bt.postOrderTraversal1(root);
-        bt.levelOrderTraversal(root);
+//        bt.levelOrderTraversal(root);
+
+        BinaryTree.Visitor<Integer> visitor = new BinaryTree.Visitor<>() {
+
+            @Override
+            public boolean visit(Integer element) {
+                return false;
+            }
+        };
+
+        bt.preOrderTraversal(root, visitor);
+
+
     }
 }

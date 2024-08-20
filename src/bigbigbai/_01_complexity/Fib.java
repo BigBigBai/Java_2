@@ -55,6 +55,7 @@ public class Fib {
         return arr[n];
     }
 
+    //递归
     public static int fib(int n) {
         if (n <= 1) return n;
 

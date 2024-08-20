@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-public class BinaryTree<E> {
+public class BinaryTree1<E> {
     private Node<E> root;
 
     public static abstract class Visitor<E> {

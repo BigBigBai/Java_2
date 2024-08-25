@@ -7,34 +7,14 @@ import java.util.Stack;
 public class BinaryTree1<E> {
     private Node<E> root;
 
-    public static abstract class Visitor<E> {
-        boolean stop;
-
-        public abstract boolean visit(E element);
-    }
-
-    public void preOrderTraversal() {
-        preOrderTraversal1(root);
-    }
-
-    public void preOrderTraversal(Visitor<E> visitor) {
-        if (visitor == null) return;
-        preOrderTraversal(root, visitor);
-    }
-
     // 先序递归版本：主人翁心态
-    public void preOrderTraversal(Node<E> node, Visitor<E> visitor) {
-        if (node == null || visitor == null) return;
+    public void preOrderTraversal(Node<E> node) {
+        if (node == null) return;
 
-//        System.out.print(node.element+" ");
-        visitor.stop = visitor.visit(node.element);
-        preOrderTraversal(node.left, visitor);
-        preOrderTraversal(node.right, visitor);
+        System.out.print(node.element+" ");
+        preOrderTraversal(node.left);
+        preOrderTraversal(node.right);
     }
-
-
-
-
 
     // 先序非递归版本：用栈
     // 有右先压右，有左再压左

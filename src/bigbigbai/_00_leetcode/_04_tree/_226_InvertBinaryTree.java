@@ -49,6 +49,7 @@ public class _226_InvertBinaryTree {
         root.left = root.right;
         root.right = temp;
 
+        //要改为left
         invertTree2(root.left);
 
         return root;

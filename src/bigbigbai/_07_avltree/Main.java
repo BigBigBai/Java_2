@@ -1,6 +1,6 @@
-package bigbigbai._07_tree;
+package bigbigbai._07_avltree;
 
-import bigbigbai._07_tree.BinaryTree.Node;
+import bigbigbai._07_avltree.BinaryTree.Node;
 import org.junit.Test;
 
 public class Main {

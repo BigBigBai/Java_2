@@ -1,4 +1,4 @@
-package bigbigbai._07_tree;
+package bigbigbai._07_avltree;
 
 import java.util.LinkedList;
 import java.util.Queue;

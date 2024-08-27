@@ -11,12 +11,15 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
         this.comparator = comparator;
     }
 
+    protected void afterAdd(Node<E> node) {}
+
     public void add(E element) {
         if (element == null) throw new IllegalArgumentException("element cannot be null!");
         //1.添加第一个节点
         if (root == null) {
             root = new Node<>(element, null);
             size++;
+            afterAdd(root);
             return;
         }
 
@@ -40,6 +43,7 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
         if (cmp > 0) parent.right = newNode;
         else parent.left = newNode;
         size++;
+        afterAdd(newNode);
     }
 
     private int compare(E e1, E e2) {

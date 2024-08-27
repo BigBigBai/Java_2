@@ -8,6 +8,23 @@ package bigbigbai._00_leetcode._01_list;
  */
 public class _206_ReverseLinkedList {
 
+    // iteration
+    public ListNode reverseList2(ListNode head) {
+//        if (head == null || head.next == null) return head;
+
+        // 头插
+        ListNode newHead = null;
+
+        while (head != null) {
+            ListNode tmp = head.next;
+            head.next = newHead;
+            newHead = head;
+            head = tmp;
+        }
+
+        return newHead;
+    }
+
     // recursion
     public ListNode reverseList1(ListNode head) {
         // 归
@@ -22,20 +39,5 @@ public class _206_ReverseLinkedList {
         return newHead;
     }
 
-    // iteration
-    public ListNode reverseList2(ListNode head) {
-        if (head == null || head.next == null) return head;
 
-        // 头插
-        ListNode newHead = null;
-
-        while (head != null) {
-            ListNode tmp = head.next;
-            head.next = newHead;
-            newHead = head;
-            head = tmp;
-        }
-
-        return newHead;
-    }
 }

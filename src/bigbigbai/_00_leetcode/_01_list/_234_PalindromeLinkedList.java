@@ -13,7 +13,7 @@ package bigbigbai._00_leetcode._01_list;
 public class _234_PalindromeLinkedList {
 
     public boolean isPalindrome(ListNode head) {
-        //1.通过快慢指针找到单链表中点
+        //1.通过快慢指针找到单链表中点，必须都指向head
         ListNode slow = head;
         ListNode fast = head;
 
@@ -25,7 +25,7 @@ public class _234_PalindromeLinkedList {
         //2.反转右半部分
         ListNode newHead = reverseList(slow);
 
-        //3.设定2个指针从两端向中间遍历, 在遍历的过程中只要有一次不想等则return false
+        //3.设定2个指针从两端向中间遍历, 在遍历的过程中只要有一次不相等则return false
         ListNode left = head;
         ListNode right = newHead;
 

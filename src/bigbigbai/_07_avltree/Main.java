@@ -8,10 +8,11 @@ public class Main {
     }
 
     @Test
-    public void test2() {
-        AVLTree<Integer> avl = new AVLTree<>();
-        avl.add(9);
-
+    public void test() {
+        AVLTree<Integer> avlTree = new AVLTree<>();
+        for (int i = 0; i < 10; i++) {
+            avlTree.add(i);
+        }
 
         System.out.println();
     }

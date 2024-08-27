@@ -170,6 +170,14 @@ public class BinaryTree<E> {
         protected boolean isLeafNode() {
             return this.left == null && this.right == null;
         }
+
+        protected boolean isLeftChild() {
+            return this.parent != null && this == this.parent.left;
+        }
+
+        protected boolean isRightChild() {
+            return this.parent != null && this == this.parent.right;
+        }
     }
 
     public int height() {

@@ -1,6 +1,5 @@
 package bigbigbai._07_avltree;
 
-import org.junit.Test;
 import java.util.Comparator;
 
 public class AVLTree<E> extends BinarySearchTree<E> {
@@ -13,12 +12,28 @@ public class AVLTree<E> extends BinarySearchTree<E> {
     }
 
     @Override
+    public Node<E> createdNode(E element, Node<E> parent) {
+        return new AVLNode<>(element, parent);
+    }
+
+    @Override
+    public void afterRemove(Node<E> node) {// Node == AVLNode
+        while ((node = node.parent) != null) {
+            if (isBalanced(node)) {
+                calculateHeight(node);
+            } else {
+                rebalance2(node);
+            }
+        }
+    }
+
+    @Override
     public void afterAdd(Node<E> node) {// Node == AVLNode
         while ((node = node.parent) != null) {
             if (isBalanced(node)) {
                 calculateHeight(node);
             } else {
-                rebalance(node);
+                rebalance2(node);
                 break;
             }
         }
@@ -43,6 +58,55 @@ public class AVLTree<E> extends BinarySearchTree<E> {
                 leftRotation(grand);
             }
         }
+    }
+
+    private void rebalance2(Node<E> grand) {
+        Node<E> parent = ((AVLNode<E>) grand).tallerChild();
+        Node<E> node = ((AVLNode<E>) parent).tallerChild();
+
+        if (parent.isLeftChild()) {// L
+            if (node.isLeftChild()) {// LL
+                rotate(grand, node.left, node, node.right, parent, parent.right, grand, grand.right);
+            } else {// LR
+                rotate(grand, parent.left, parent, node.left, node, node.right, grand, grand.right);
+            }
+        } else {// R
+            if (node.isLeftChild()) {// RL
+                rotate(grand, grand.left, grand, node.left, node, node.right, parent, parent.right);
+            } else {// RR
+                rotate(grand, grand.left, grand, parent.left, parent, node.left, node, node.right);
+            }
+        }
+    }
+
+    private void rotate(Node<E> r, Node<E> a, Node<E> b, Node<E> c, Node<E> d, Node<E> e, Node<E> f, Node<E> g) {
+        // 1. 让d成为子树的根节点
+        d.parent = r.parent;
+        if (r.isLeftChild()) r.parent.left = d;
+        else if (r.isRightChild()) r.parent.right = d;
+        else root = d;
+
+        // 2. 左子树 abc
+        b.left = a;
+        if (a != null) a.parent = b;
+        b.right = c;
+        if (c != null) c.parent = b;
+
+        // 3. 右子树 efg
+        f.left = e;
+        if (e != null) e.parent = f;
+        f.right = g;
+        if (g != null) g.parent = f;
+
+        // 4. bdf
+        d.left = b;
+        d.right = f;
+        b.parent = d;
+        f.parent = d;
+
+        calculateHeight(b);
+        calculateHeight(f);
+        calculateHeight(d);
     }
 
     private void leftRotation(Node<E> grand) {
@@ -86,14 +150,6 @@ public class AVLTree<E> extends BinarySearchTree<E> {
     private boolean isBalanced(Node<E> node) {
         return Math.abs(((AVLNode<E>) node).balanceFactor()) <= 1;
     }
-
-//    @Test
-//    public void test() {
-//        Node<Integer> node = new Node<>(10, null);
-//
-////        ((AVLNode<E>) node).calculateHeight();
-//        System.out.println(((AVLNode<E>) node).height);
-//    }
 
     private static class AVLNode<E> extends Node<E> {
         int height = 1;

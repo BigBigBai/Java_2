@@ -1,7 +1,5 @@
 package bigbigbai._00_leetcode._04_tree;
 
-import org.w3c.dom.Node;
-
 public class IsBalanced {
 
     /**

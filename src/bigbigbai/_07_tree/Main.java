@@ -1,5 +1,6 @@
 package bigbigbai._07_tree;
 
+import bigbigbai._07_tree.printer.BinaryTrees;
 import bigbigbai._07_tree.BinaryTree.Node;
 import org.junit.Test;
 
@@ -18,7 +19,7 @@ public class Main {
 
         bst.remove(10);
 
-        System.out.println();
+        BinaryTrees.print(bst);
     }
 
     @Test
@@ -38,9 +39,9 @@ public class Main {
 //        System.out.println(bst.successor(bst.node(8)));
 //        System.out.println(bst.contains(12));
 //        System.out.println(bst.size());
-        System.out.println(bst.height());
+//        System.out.println(bst.height());
 
-        System.out.println();
+        BinaryTrees.print(bst);
     }
 
     @Test

@@ -1,10 +1,12 @@
 package bigbigbai._07_avltree;
 
+import bigbigbai._07_avltree.printer.BinaryTreeInfo;
+
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-public class BinaryTree<E> {
+public class BinaryTree<E> implements BinaryTreeInfo {
     protected int size;
     protected Node<E> root;
 
@@ -20,7 +22,6 @@ public class BinaryTree<E> {
         root = null;
         size = 0;
     }
-
 
     public static abstract class Visitor<E> {
         boolean stop;
@@ -281,5 +282,30 @@ public class BinaryTree<E> {
             node = node.parent;
         }
         return node.parent;
+    }
+
+    @Override
+    public Object root() {
+        return root;
+    }
+
+    @Override
+    public Object left(Object node) {
+        return ((Node<E>)node).left;
+    }
+
+    @Override
+    public Object right(Object node) {
+        return ((Node<E>)node).right;
+    }
+
+    @Override
+    public Object string(Object node) {
+        Node<E> myNode = ((Node<E>)node);
+        String parentString = "null";
+        if (myNode.parent != null) {
+            parentString = myNode.parent.element.toString();
+        }
+        return myNode.element + "_p(" + parentString + ")";
     }
 }

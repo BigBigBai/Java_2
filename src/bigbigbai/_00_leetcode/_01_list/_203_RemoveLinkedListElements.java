@@ -9,8 +9,8 @@ public class _203_RemoveLinkedListElements {
     public ListNode removeElements2(ListNode head, int val) {
         ListNode dummyNode = new ListNode(0);
         ListNode newTail = dummyNode;
-        while (head != null) {
 
+        while (head != null) {
             if (head.val != val) newTail = newTail.next = head;
 
             head = head.next;
@@ -27,6 +27,9 @@ public class _203_RemoveLinkedListElements {
         ListNode newHead = null;
         ListNode newTail = null;
 
+        // head 进行遍历
+        // newTail 维持新链表的尾端
+        // newHead 维持新链表的首端
         while (head != null) {
             if (head.val != val) {
                 if (newTail == null) {

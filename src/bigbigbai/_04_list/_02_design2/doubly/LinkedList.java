@@ -38,7 +38,7 @@ public class LinkedList<E> extends AbstractList<E> {
             Node<E> newLast = new Node<>(element, oldLast, null);
 
             last = newLast;
-            if (size == 0) first = newLast;
+            if (size == 0) first = newLast; // first node
             else oldLast.next = newLast;
         } else {
             // current/head
@@ -47,7 +47,7 @@ public class LinkedList<E> extends AbstractList<E> {
             Node<E> newNode = new Node<>(element, prevNode, nextNode);
 
             nextNode.prev = newNode;
-            if (index == 0) first = newNode;
+            if (index == 0) first = newNode; // head
             else prevNode.next = newNode;
         }
 
@@ -100,7 +100,7 @@ public class LinkedList<E> extends AbstractList<E> {
         } else {
             Node<E> node = first;
             for (int i = 0; i < size; i++) {
-                if (node.element.equals(element)) return i;
+                if (element.equals(node.element)) return i;
                 node = node.next;
             }
 

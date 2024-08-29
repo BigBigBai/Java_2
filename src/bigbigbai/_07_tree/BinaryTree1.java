@@ -70,7 +70,7 @@ public class BinaryTree1<E> {
     }
 
     // 后序非递归版本
-    // 1.把先序遍历的顺序调整
+    // 1.把先序遍历的顺序调整, CLR -> CRL
     // 2.做个栈，收集结果
     // 3.把结果依次弹出
     public void postOrderTraversal1(Node<E> node) {

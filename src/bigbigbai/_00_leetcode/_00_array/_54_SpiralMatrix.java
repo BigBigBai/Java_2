@@ -45,7 +45,6 @@ public class _54_SpiralMatrix {
         }
 
 
-
         return list;
     }
 

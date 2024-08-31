@@ -1,4 +1,6 @@
-package bigbigbai._00_leetcode._01_list;
+package bigbigbai._00_leetcode._01_list.list1;
+
+import bigbigbai._00_leetcode._01_list.ListNode;
 
 /**
  * https://leetcode.cn/problems/remove-linked-list-elements/description/

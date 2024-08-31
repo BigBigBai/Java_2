@@ -18,6 +18,5 @@ public class _237_DeleteNodeInLinkedList {
         ListNode removed = node.next;
         node.next = removed.next;
         node.val = removed.val;
-
     }
 }

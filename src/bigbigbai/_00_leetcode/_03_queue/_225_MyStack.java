@@ -5,6 +5,7 @@ import java.util.Queue;
 
 /**
  * https://leetcode.cn/problems/implement-stack-using-queues/description/
+ * 旧写法
  */
 public class _225_MyStack {
     Queue<Integer> data;

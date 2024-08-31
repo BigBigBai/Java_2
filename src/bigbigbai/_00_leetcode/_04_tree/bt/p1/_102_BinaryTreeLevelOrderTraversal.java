@@ -1,4 +1,4 @@
-package bigbigbai._00_leetcode._04_tree.bt;
+package bigbigbai._00_leetcode._04_tree.bt.p1;
 
 import bigbigbai._00_leetcode._04_tree.TreeNode;
 

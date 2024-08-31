@@ -31,16 +31,10 @@ public class _20_ValidParentheses {
                 else {
                     char top = stack.pop();
 
-                    if (top == '(' && c == ')') {
-
-                    } else if (top == '{' && c == '}') {
-
-                    } else if (top == '[' && c == ']') {
-
-                    } else {
-                        return false;
-                    }
-
+                    if (top == '(' && c == ')') {}
+                    else if (top == '{' && c == '}') {}
+                    else if (top == '[' && c == ']') {}
+                    else return false;
                 }
             }
         }

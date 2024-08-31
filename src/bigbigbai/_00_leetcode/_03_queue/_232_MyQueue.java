@@ -5,7 +5,6 @@ import java.util.Stack;
 /**
  * https://leetcode.cn/problems/implement-queue-using-stacks/
  *
- *
  */
 public class _232_MyQueue {
     Stack<Integer> inStack;

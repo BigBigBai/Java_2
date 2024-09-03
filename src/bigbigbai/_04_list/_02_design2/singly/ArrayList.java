@@ -3,7 +3,6 @@ package bigbigbai._04_list._02_design2.singly;
 import bigbigbai._04_list._02_design2.AbstractList;
 
 public class ArrayList<E> extends AbstractList<E> {
-
     private E[] elements;
 
     // Default initial capacity

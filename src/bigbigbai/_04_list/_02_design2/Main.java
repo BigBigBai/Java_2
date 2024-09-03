@@ -3,13 +3,14 @@ package bigbigbai._04_list._02_design2;
 import bigbigbai._04_list._02_design2.doubly.DoublyCircularLinkedList;
 import bigbigbai._04_list._02_design2.doubly.JosephusRing;
 import bigbigbai._04_list._02_design2.doubly.LinkedList;
+import bigbigbai._04_list._02_design2.singly.ArrayList;
 import bigbigbai._04_list._02_design2.singly.SingleCircularLinkedList;
 import bigbigbai._04_list._02_design2.singly.SingleLinkedList;
 import org.junit.Test;
 
 public class Main {
     public static void main(String[] args) {
-        test6(8, 2);
+//        test6(8, 2);
     }
 
 

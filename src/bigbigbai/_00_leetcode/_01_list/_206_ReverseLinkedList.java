@@ -10,8 +10,6 @@ public class _206_ReverseLinkedList {
 
     // iteration
     public ListNode reverseList2(ListNode head) {
-//        if (head == null || head.next == null) return head;
-
         // 头插
         ListNode newHead = null;
 

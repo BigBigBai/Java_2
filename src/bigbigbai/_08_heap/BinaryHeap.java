@@ -1,8 +1,9 @@
 package bigbigbai._08_heap;
 
+import bigbigbai._08_heap.printer.BinaryTreeInfo;
 import java.util.Comparator;
 
-public class BinaryHeap<E> extends AbstractHeap<E> {
+public class BinaryHeap<E> extends AbstractHeap<E> implements BinaryTreeInfo {
     private E[] elements;
     private static final int DEFAULT_CAPACITY = 10;
 
@@ -11,24 +12,23 @@ public class BinaryHeap<E> extends AbstractHeap<E> {
         if (elements == null || elements.length == 0) {
             this.elements = (E[]) new Object[DEFAULT_CAPACITY];
         } else {
-            int length = elements.length;
-            length = length < DEFAULT_CAPACITY ? DEFAULT_CAPACITY : length;
-            this.elements = (E[]) new Object[length];
-
-            for (E e:elements) add(e);
+            size = elements.length;
+            int capacity = Math.max(elements.length, DEFAULT_CAPACITY);
+            this.elements = (E[]) new Object[capacity];
+            for (int i = 0; i < size; i++) {
+                this.elements[i] = elements[i];
+            }
         }
+        heapify();
+    }
+
+    public BinaryHeap(Comparator<E> comparator) {
+        super(comparator);
+        this.elements = (E[]) new Object[DEFAULT_CAPACITY];
     }
 
     public BinaryHeap(E[] elements) {
-        if (elements == null || elements.length == 0) {
-            this.elements = (E[]) new Object[DEFAULT_CAPACITY];
-        } else {
-            int length = elements.length;
-            length = length < DEFAULT_CAPACITY ? DEFAULT_CAPACITY : length;
-            this.elements = (E[]) new Object[length];
-
-            for (E e:elements) add(e);
-        }
+        this(null, elements);
     }
 
     public BinaryHeap() {
@@ -76,7 +76,8 @@ public class BinaryHeap<E> extends AbstractHeap<E> {
 
     @Override
     public E get() {
-        return null;
+        emptyCheck();
+        return elements[0];
     }
 
     // 1. Cover the root node with the last node
@@ -92,7 +93,6 @@ public class BinaryHeap<E> extends AbstractHeap<E> {
         return root;
     }
 
-
     // 3. Loop the following (43 is referred to as node for short)
     // If node < the maximum child node
     //     Swap with the maximum child node
@@ -100,9 +100,9 @@ public class BinaryHeap<E> extends AbstractHeap<E> {
     //     Exit the loop
     private void siftDown(int index) {
         E e = elements[index];
+        int half = size >> 1;
 
-
-        while (index < size - 1) {
+        while (index < half) {
             // 对于child node有2种情况
             // 1.只有左
             // 2.有左有右
@@ -129,7 +129,27 @@ public class BinaryHeap<E> extends AbstractHeap<E> {
 
     @Override
     public E replace(E element) {
-        return null;
+        elementNotNullCheck(element);
+        E root = null;
+        if (size == 0) {
+            elements[0] = element;
+            size++;
+        } else {
+            root = elements[0];
+            elements[0] = element;
+            siftDown(0);
+        }
+        return root;
+    }
+
+    private void heapify() {
+        for (int i = (size >> 1) - 1; i >= 0; i--) {
+            siftDown(i);
+        }
+    }
+
+    private void emptyCheck() {
+        if (size == 0) throw new IndexOutOfBoundsException("heap is empty!");
     }
 
     private void elementNotNullCheck(E element) {
@@ -154,5 +174,27 @@ public class BinaryHeap<E> extends AbstractHeap<E> {
 
         // 5. 返回扩容后的容器
         elements = newElements;
+    }
+
+    @Override
+    public Object root() {
+        return 0;
+    }
+
+    @Override
+    public Object left(Object node) {
+        int index = ((int)node << 1) + 1;
+        return index >= size ? null : index;
+    }
+
+    @Override
+    public Object right(Object node) {
+        int index = ((int)node << 1) + 2;
+        return index >= size ? null : index;
+    }
+
+    @Override
+    public Object string(Object node) {
+        return elements[(int)node];
     }
 }

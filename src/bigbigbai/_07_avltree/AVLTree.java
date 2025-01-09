@@ -28,11 +28,12 @@ public class AVLTree<E> extends BinarySearchTree<E> {
     }
 
     @Override
-    public void afterAdd(Node<E> node) {// Node == AVLNode
+    public void afterAdd(Node<E> node) {
+        // tree is balanced
         while ((node = node.parent) != null) {
             if (isBalanced(node)) {
                 calculateHeight(node);
-            } else {
+            } else {    // not balanced
                 rebalance2(node);
                 break;
             }

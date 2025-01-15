@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Problem3 {
     public static void main(String[] args) {
-        System.out.println(Arrays.deepToString(solution("VHV")));
+        System.out.println(Arrays.deepToString(solution("VVHHV")));
     }
 
     public static int[][] solution(String s) {

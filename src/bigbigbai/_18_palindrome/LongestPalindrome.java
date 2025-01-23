@@ -16,12 +16,15 @@ public class LongestPalindrome {
         if (s == null || s.isEmpty()) return null;
 
         char[] cs = s.toCharArray();
+
         boolean[][] dp = new boolean[cs.length][cs.length];
         int begin = 0;
         int maxLen = 1;
         for (int i = cs.length - 1; i >= 0; i--) {
             for (int j = i; j < cs.length; j++) {
                 int len = j - i + 1;
+
+                // dp
                 if (len <= 2) {
                     dp[i][j] = cs[i] == cs[j];
                 } else {
@@ -31,7 +34,6 @@ public class LongestPalindrome {
                 if (dp[i][j] && len > maxLen) {
                     maxLen = len;
                     begin = i;
-
                 }
             }
         }

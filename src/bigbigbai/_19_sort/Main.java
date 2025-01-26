@@ -7,14 +7,20 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        Integer[] randomArray = Integers.random(20000, -100000, 100000);
-        //Integers.println(randomArray);
+        Integer[] randomArray = Integers.random(100, 1, 200);
+        Integers.println(randomArray);
 //        System.out.println("===============================");
 //        HeapSort<Integer> heapSort = new HeapSort<>();
 //        heapSort.sort(randomArray);
         // Integers.println(randomArray);
-        testSorts(randomArray,new _04_InsertionSort<>());
+        testSorts(randomArray,
+                new _01_BubbleSort<>()
+//                new _04_InsertionSort<>()
 
+
+        );
+
+        Integers.println(randomArray);
     }
 
     public static void testSorts(Integer[] randomArray, Sort... sorts) {
@@ -22,7 +28,6 @@ public class Main {
             Integer[] newArray = Integers.copy(randomArray);
             sort.sort(newArray);
             Asserts.test(Integers.isAscOrder(newArray));
-
         }
 
         Arrays.sort(sorts);

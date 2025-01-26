@@ -2,7 +2,7 @@ package bigbigbai._19_sort;
 
 import java.util.Arrays;
 
-public class _01_BubbleSort {
+public class _01_BubbleSort<T extends Comparable<T>> extends Sort<T> {
     public static void main(String[] args) {
         Integer[] arr = new Integer[10];
         arr[0] = 99;
@@ -49,13 +49,12 @@ public class _01_BubbleSort {
         }
     }
 
-    public static void sort(Integer[] arr) {
-        for (int end = arr.length - 1; end > 0; end--) {
+    @Override
+    public void sort() {
+        for (int end = array.length - 1; end > 0; end--) {
             for (int start = 1; start <= end; start++) {
-                if (arr[start] < arr[start - 1]) {
-                    int temp = arr[start];
-                    arr[start] = arr[start - 1];
-                    arr[start - 1] = temp;
+                if (cmp(array[start], array[start - 1]) < 0) {
+                    swap(start, start - 1);
                 }
             }
         }

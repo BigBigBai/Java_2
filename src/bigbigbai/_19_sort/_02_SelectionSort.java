@@ -11,7 +11,6 @@ public class _02_SelectionSort<T extends Comparable<T>> extends Sort<T> {
             }
 
             swap(maxIndex, end);
-
         }
     }
 }

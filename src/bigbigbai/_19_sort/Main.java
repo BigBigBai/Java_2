@@ -8,19 +8,19 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         Integer[] randomArray = Integers.random(100, 1, 200);
-        Integers.println(randomArray);
-//        System.out.println("===============================");
-//        HeapSort<Integer> heapSort = new HeapSort<>();
-//        heapSort.sort(randomArray);
-        // Integers.println(randomArray);
-        testSorts(randomArray,
-                new _01_BubbleSort<>()
-//                new _04_InsertionSort<>()
+        System.out.println(Arrays.toString(randomArray));
 
+//        Sort<Integer> sort = new _01_BubbleSort3<>();
+//        sort.sort(randomArray);
+
+        testSorts(randomArray,
+                new _01_BubbleSort<>(),
+                new _02_SelectionSort<>()
+//                new _01_BubbleSort3<>()
 
         );
 
-        Integers.println(randomArray);
+        System.out.println(Arrays.toString(randomArray));
     }
 
     public static void testSorts(Integer[] randomArray, Sort... sorts) {

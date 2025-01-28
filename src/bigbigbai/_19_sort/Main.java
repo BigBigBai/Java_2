@@ -10,13 +10,13 @@ public class Main {
         Integer[] randomArray = Integers.random(100, 1, 200);
         System.out.println(Arrays.toString(randomArray));
 
-//        Sort<Integer> sort = new _01_BubbleSort3<>();
+//        Sort<Integer> sort = new _03_HeapSort<>();
 //        sort.sort(randomArray);
 
         testSorts(randomArray,
                 new _01_BubbleSort<>(),
-                new _02_SelectionSort<>()
-//                new _01_BubbleSort3<>()
+                new _02_SelectionSort<>(),
+                new _03_HeapSort<>()
 
         );
 

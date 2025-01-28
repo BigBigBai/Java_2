@@ -32,18 +32,15 @@ public class Problem2 {
         Tree K = new Tree(3);
         E.l = K;
 
-        System.out.println(solution(A));
+        System.out.println(solution(A));// 4
     }
 
     public static int solution(Tree T) {
         if (T == null) return 0;
 
         List<Integer> list = new ArrayList<>();
-        list.add(T.x);
 
-        int longest = Math.max(solution(T.l, list), solution(T.r, list)) + 1;
-        list.remove(list.size() - 1);
-        return longest;
+        return solution(T, list);
     }
 
     public static int solution(Tree T, List<Integer> list) {
@@ -53,8 +50,8 @@ public class Problem2 {
         list.add(T.x);
         int longest = Math.max(solution(T.l, list), solution(T.r, list)) + 1;
         list.remove(list.size() - 1);
+
         return longest;
     }
-
 
 }

@@ -7,20 +7,22 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        Integer[] randomArray = Integers.random(100, 1, 200);
-        System.out.println(Arrays.toString(randomArray));
+        Integer[] randomArray = Integers.random(1_00_000, 1, 20_000_000);
+//        System.out.println(Arrays.toString(randomArray));
 
-//        Sort<Integer> sort = new _03_HeapSort<>();
+//        Sort<Integer> sort = new _06_QuickSort<>();
 //        sort.sort(randomArray);
 
         testSorts(randomArray,
-                new _01_BubbleSort<>(),
+                new _01_BubbleSort3<>(),
                 new _02_SelectionSort<>(),
-                new _03_HeapSort<>()
-
+                new _03_HeapSort<>(),
+                new _04_InsertionSort3<>(),
+                new _05_MergeSort<>(),
+                new _06_QuickSort<>()
         );
 
-        System.out.println(Arrays.toString(randomArray));
+//        System.out.println(Arrays.toString(randomArray));
     }
 
     public static void testSorts(Integer[] randomArray, Sort... sorts) {
@@ -35,6 +37,5 @@ public class Main {
         for (Sort sort : sorts) {
             System.out.println(sort);
         }
-
     }
 }

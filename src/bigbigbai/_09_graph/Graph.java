@@ -13,4 +13,15 @@ public abstract class Graph<V, E> {
     public abstract void addEdge(V fromV, V toV);
     public abstract void addEdge(V fromV, V toV, E weight);
     public abstract void removeEdge(V fromV, V toV);
+
+    public abstract void bfs(V begin);
+    public abstract void bfs(V begin, VertexVisitor<V> visitor);
+
+    public abstract void dfs(V begin);
+    public abstract void dfs(V begin, VertexVisitor<V> visitor);
+    public abstract void dfs2(V begin);
+
+    public abstract class VertexVisitor<V> {
+        public abstract boolean visit(V val);
+    }
 }

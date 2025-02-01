@@ -1,4 +1,6 @@
-package bigbigbai._19_sort;
+package bigbigbai._19_sort.cmp;
+
+import bigbigbai._19_sort.Sort;
 
 public class _03_HeapSort<T extends Comparable<T>> extends Sort<T> {
     private int size;

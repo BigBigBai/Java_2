@@ -1,4 +1,4 @@
-package bigbigbai._19_sort;
+package bigbigbai._19_sort.cmp;
 
 public class _04_BinarySearch {
     public static void main(String[] args) {

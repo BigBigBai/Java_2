@@ -1,4 +1,6 @@
-package bigbigbai._19_sort;
+package bigbigbai._19_sort.cmp;
+
+import bigbigbai._19_sort.Sort;
 
 public class _05_MergeSort<T extends Comparable<T>> extends Sort<T> {
     private T[] leftArray;

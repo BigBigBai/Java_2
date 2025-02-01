@@ -1,5 +1,6 @@
 package bigbigbai._19_sort;
 
+import bigbigbai._19_sort.cmp.*;
 import bigbigbai._19_sort.utils.Asserts;
 import bigbigbai._19_sort.utils.Integers;
 
@@ -37,5 +38,6 @@ public class Main {
         for (Sort sort : sorts) {
             System.out.println(sort);
         }
+
     }
 }

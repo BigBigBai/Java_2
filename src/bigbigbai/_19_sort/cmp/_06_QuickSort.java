@@ -1,4 +1,6 @@
-package bigbigbai._19_sort;
+package bigbigbai._19_sort.cmp;
+
+import bigbigbai._19_sort.Sort;
 
 public class _06_QuickSort<T extends Comparable<T>> extends Sort<T> {
     @Override
@@ -18,9 +20,7 @@ public class _06_QuickSort<T extends Comparable<T>> extends Sort<T> {
     /**
      * 1. find pivotIndex
      * 2. put value <= pivot to the left of pivot, put value > pivot to the right of pivot
-     * @param begin
-     * @param end
-     * @return
+     * @author: Dal
      */
     private int pivotIndex(int begin, int end) {
         // 0. randomly select an element as pivot, swap with begin element

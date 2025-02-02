@@ -55,7 +55,9 @@ public class ListGraph<V, E> extends Graph<V, E> {
 
         @Override
         public int hashCode() {
-            return from.hashCode() * 31 + to.hashCode() * 31 + weight.hashCode();
+//            return from.hashCode() * 31 + to.hashCode() * 31 + weight.hashCode();
+
+            return from.hashCode() * 31 + to.hashCode() * 31;
         }
     }
 
@@ -258,5 +260,43 @@ public class ListGraph<V, E> extends Graph<V, E> {
                 break;
             }
         }
+    }
+
+    /**
+     * Thought
+     * 1.need to prepare a map(to store inDegree info), a queue(cached area), a list(save sorted result)
+     * 2.put inDegree=0 vertex into queue, inDegree!=0 into map
+     * 3.poll queue head element, put into list, update inDegree info in map
+     * 4.in map, find inDegree=0 vertex and put into queue
+     * 5.repeat3, 4, until queue becomes null
+     * @author: Dal
+     */
+    public List<V> topologicalSort(V begin) {
+        //1.need to prepare a map(to store inDegree info), a queue(cached area), a list(save sorted result)
+        Map<Vertex<V, E>, Integer> map = new HashMap<>();
+        Queue<Vertex<V, E>> queue = new LinkedList<>();
+        List<V> list = new LinkedList<>();
+
+        //2.put inDegree=0 vertex into queue, inDegree!=0 into map
+        vertices.forEach((V v, Vertex<V, E> vertex)->{
+            int size = vertex.inEdges.size();
+            if (size == 0) queue.offer(vertex);
+            else map.put(vertex, size);
+        });
+
+        //5.repeat3, 4, until queue becomes null
+        while (!queue.isEmpty()) {
+            //3.poll queue head element, put into list, update inDegree info in map
+            Vertex<V, E> vertex = queue.poll();
+            list.add(vertex.value);
+            for (Edge<V, E> edge : vertex.outEdges) {
+                int toIn = map.get(edge.to) - 1;
+                //4.in map, find inDegree=0 vertex and put into queue
+                if (toIn == 0) queue.offer(edge.to);
+                else map.put(edge.to, toIn);
+            }
+        }
+
+        return list;
     }
 }

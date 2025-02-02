@@ -1,5 +1,7 @@
 package bigbigbai._09_graph;
 
+import java.util.List;
+
 public abstract class Graph<V, E> {
     public Graph() {
     }
@@ -24,4 +26,6 @@ public abstract class Graph<V, E> {
     public abstract class VertexVisitor<V> {
         public abstract boolean visit(V val);
     }
+
+    public abstract List<V> topologicalSort(V begin);
 }

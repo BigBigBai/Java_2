@@ -6,6 +6,9 @@ package bigbigbai._00_leetcode._00_array;
  *
  */
 public class _88_MergeSortedArray {
+    /**
+     * @author: Dal
+     */
     public void merge2(int[] nums1, int m, int[] nums2, int n) {
         int i = m - 1;
         int j = n - 1;
@@ -20,6 +23,10 @@ public class _88_MergeSortedArray {
 
     }
 
+    /**
+     *
+     * @author: Bai
+     */
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         int i = m - 1;
         int j = n - 1;

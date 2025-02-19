@@ -4,7 +4,12 @@ import java.util.List;
 import java.util.Set;
 
 public abstract class Graph<V, E> {
-    public Graph() {
+    protected WeightManager<E> weightManager;
+
+    public Graph() {}
+
+    public Graph(WeightManager<E> weightManager) {
+        this.weightManager = weightManager;
     }
 
     // Graph1
@@ -34,7 +39,7 @@ public abstract class Graph<V, E> {
         public abstract boolean visit(V val);
     }
 
-    public abstract static class EdgeInfo<V, E> {
+    public static class EdgeInfo<V, E> {
         V from;
         V to;
         E weight;
@@ -71,7 +76,11 @@ public abstract class Graph<V, E> {
 
         @Override
         public String toString() {
-            return "from=" + from + ", to=" + to + ", weight=" + weight;
+            return "{from=" + from + ", to=" + to + ", weight=" + weight + "}\n";
         }
+    }
+
+    public interface WeightManager<E> {
+        int compare(E w1, E w2);
     }
 }

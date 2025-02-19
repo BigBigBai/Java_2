@@ -3,6 +3,13 @@ package bigbigbai._09_graph;
 import java.util.*;
 
 public class ListGraph<V, E> extends Graph<V, E> {
+    public ListGraph() {}
+
+    public ListGraph(WeightManager<E> weightManager) {
+        super(weightManager);
+    }
+
+    // Graph1
     private Map<V, Vertex<V, E>> vertices = new HashMap<>();
     private Set<Edge<V, E>> edges = new HashSet<>();
 
@@ -57,6 +64,10 @@ public class ListGraph<V, E> extends Graph<V, E> {
         public int hashCode() {
 //            return from.hashCode() * 31 + to.hashCode() * 31 + weight.hashCode();
             return from.hashCode() * 31 + to.hashCode() * 31;
+        }
+
+        public EdgeInfo<V, E> info() {
+            return new EdgeInfo<V, E>(from.value, to.value, weight);
         }
     }
 
@@ -161,6 +172,9 @@ public class ListGraph<V, E> extends Graph<V, E> {
         }
     }
 
+
+
+    // Graph2
     @Override
     public void bfs(V begin) {
         Vertex<V, E> beginVertex = vertices.get(begin);
@@ -229,8 +243,8 @@ public class ListGraph<V, E> extends Graph<V, E> {
     }
 
     /**
-     * Stack
      * Thought:
+     * Stack Way
      * 1. push start vertex into stack and traverse (pop stack top), save into visited set
      * 2. if stack top's outEdge's points are not in visited set, push outEdge's from and to point into stack in order
      * 3. repeat traverse, save into visited set
@@ -260,6 +274,11 @@ public class ListGraph<V, E> extends Graph<V, E> {
             }
         }
     }
+
+
+
+    // Graph3
+    private Comparator<Edge<V, E>> edgeComparator = (o1, o2) -> weightManager.compare(o1.weight, o2.weight);
 
     /**
      * Thought
@@ -312,12 +331,18 @@ public class ListGraph<V, E> extends Graph<V, E> {
         Vertex<V, E> vertex = iterator.next();// A point
         addedVertices.add(vertex);
 
+        MinHeap<Edge<V, E>> minHeap = new MinHeap<>(vertex.outEdges, edgeComparator);
 
+        while (!minHeap.isEmpty() && addedVertices.size() < vertices.size()) {
+            Edge<V, E> edge = minHeap.remove();
+            if (addedVertices.contains(edge.to)) continue;
+            edgeInfos.add(edge.info());// AB --> A mst edge set
+            addedVertices.add(edge.to);// B point
 
+            // put B point's all outEdges into heap, search for A mst edge set the smallest crossing edge
+            minHeap.addAll(edge.to.outEdges);
+        }
 
-
-
-
-        return null;
+        return edgeInfos;
     }
 }

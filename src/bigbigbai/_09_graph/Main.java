@@ -3,6 +3,7 @@ package bigbigbai._09_graph;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -70,6 +71,40 @@ public class Main {
         System.out.println(list);
     }
 
+    @Test
+    public void mst() {
+        Graph<Object, Double> unDirectedGraph = unDirectGraph(Data.MST_01);
+        Set<Graph.EdgeInfo<Object, Double>> mst = unDirectedGraph.mst();
+        System.out.println(mst);
+    }
 
+
+
+
+
+    public static Graph.WeightManager<Double> weightManager = new Graph.WeightManager<Double>() {
+        @Override
+        public int compare(Double w1, Double w2) {
+            return w1.compareTo(w2);
+        }
+    };
+
+    private static Graph<Object, Double> unDirectGraph(Object[][] data) {
+        Graph<Object, Double> graph = new ListGraph<>(weightManager);
+        for (Object[] edge : data) {
+            if (edge.length == 1) {
+                graph.addVertex(edge[0]);//离散的点
+            } else if (edge.length == 2) {
+                graph.addEdge(edge[0], edge[1]);
+                graph.addEdge(edge[1], edge[0]);
+            } else if (edge.length == 3) {
+                double weight = Double.parseDouble(edge[2].toString());
+
+                graph.addEdge(edge[0], edge[1], weight);
+                graph.addEdge(edge[1], edge[0], weight);
+            }
+        }
+        return graph;
+    }
 
 }

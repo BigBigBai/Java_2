@@ -3,8 +3,8 @@ package bigbigbai._09_graph;
 import java.util.*;
 
 public class ListGraph<V, E> extends Graph<V, E> {
-    private Set<Edge<V, E>> edges = new HashSet<>();
     private Map<V, Vertex<V, E>> vertices = new HashMap<>();
+    private Set<Edge<V, E>> edges = new HashSet<>();
 
     private static class Vertex<V, E> {
         V value;
@@ -56,7 +56,6 @@ public class ListGraph<V, E> extends Graph<V, E> {
         @Override
         public int hashCode() {
 //            return from.hashCode() * 31 + to.hashCode() * 31 + weight.hashCode();
-
             return from.hashCode() * 31 + to.hashCode() * 31;
         }
     }
@@ -230,11 +229,11 @@ public class ListGraph<V, E> extends Graph<V, E> {
     }
 
     /**
+     * Stack
      * Thought:
      * 1. push start vertex into stack and traverse (pop stack top), save into visited set
      * 2. if stack top's outEdge's points are not in visited set, push outEdge's from and to point into stack in order
      * 3. repeat traverse, save into visited set
-     * @param begin
      */
     public void dfs2(V begin) {
         Vertex<V, E> beginVertex = vertices.get(begin);
@@ -284,7 +283,7 @@ public class ListGraph<V, E> extends Graph<V, E> {
             else map.put(vertex, size);
         });
 
-        //5.repeat3, 4, until queue becomes null
+        //5.repeat3&4, until queue becomes null
         while (!queue.isEmpty()) {
             //3.poll queue head element, put into list, update inDegree info in map
             Vertex<V, E> vertex = queue.poll();
@@ -296,7 +295,29 @@ public class ListGraph<V, E> extends Graph<V, E> {
                 else map.put(edge.to, toIn);
             }
         }
-
         return list;
+    }
+
+    @Override
+    public Set<EdgeInfo<V, E>> mst() {
+        return prim();
+    }
+
+    private Set<EdgeInfo<V, E>> prim() {
+        // A mst edge set
+        Set<EdgeInfo<V, E>> edgeInfos = new HashSet<>();
+        // S mst vertex set
+        Set<Vertex<V, E>> addedVertices = new HashSet<>();
+        Iterator<Vertex<V, E>> iterator = vertices.values().iterator();
+        Vertex<V, E> vertex = iterator.next();// A point
+        addedVertices.add(vertex);
+
+
+
+
+
+
+
+        return null;
     }
 }

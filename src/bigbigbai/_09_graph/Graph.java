@@ -1,6 +1,7 @@
 package bigbigbai._09_graph;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public abstract class Graph<V, E> {
@@ -32,7 +33,10 @@ public abstract class Graph<V, E> {
     public abstract List<V> topologicalSort(V begin);
     public abstract Set<EdgeInfo<V, E>> mst();
 
+    // Graph4
+    public abstract Map<V, E> shortestPath(V begin);
 
+    // Graph5
 
 
     public abstract static class VertexVisitor<V> {
@@ -82,5 +86,13 @@ public abstract class Graph<V, E> {
 
     public interface WeightManager<E> {
         int compare(E w1, E w2);
+
+        E add(E w1, E w2);
+
+        E zero();
+    }
+
+    public static class PathInfo<V, E> {
+
     }
 }

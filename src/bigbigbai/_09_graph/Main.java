@@ -3,6 +3,7 @@ package bigbigbai._09_graph;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class Main {
@@ -73,19 +74,36 @@ public class Main {
 
     @Test
     public void mst() {
-        Graph<Object, Double> unDirectedGraph = unDirectGraph(Data.MST_01);
+        Graph<Object, Double> unDirectedGraph = unDirectGraph(Data.MST_02);
         Set<Graph.EdgeInfo<Object, Double>> mst = unDirectedGraph.mst();
         System.out.println(mst);
+    }
+
+    @Test
+    public void dijkstra() {
+        Graph<Object, Double> directGraph = directGraph(Data.SP);
+        Map<Object, Double> paths = directGraph.shortestPath("A");
+        System.out.println(paths);
     }
 
 
 
 
 
-    public static Graph.WeightManager<Double> weightManager = new Graph.WeightManager<Double>() {
+    public static Graph.WeightManager<Double> weightManager = new Graph.WeightManager<>() {
         @Override
         public int compare(Double w1, Double w2) {
             return w1.compareTo(w2);
+        }
+
+        @Override
+        public Double add(Double w1, Double w2) {
+            return w1 + w2;
+        }
+
+        @Override
+        public Double zero() {
+            return 0.0;
         }
     };
 
@@ -102,6 +120,22 @@ public class Main {
 
                 graph.addEdge(edge[0], edge[1], weight);
                 graph.addEdge(edge[1], edge[0], weight);
+            }
+        }
+        return graph;
+    }
+
+    private static Graph<Object, Double> directGraph(Object[][] data) {
+        Graph<Object, Double> graph = new ListGraph<>(weightManager);
+        for (Object[] edge : data) {
+            if (edge.length == 1) {
+                graph.addVertex(edge[0]);
+            } else if (edge.length == 2) {
+                graph.addEdge(edge[0], edge[1]);
+            } else if (edge.length == 3) {
+                double weight = Double.parseDouble(edge[2].toString());
+
+                graph.addEdge(edge[0], edge[1], weight);
             }
         }
         return graph;

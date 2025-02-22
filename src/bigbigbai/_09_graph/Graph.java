@@ -7,9 +7,7 @@ import java.util.Set;
 
 public abstract class Graph<V, E> {
     protected WeightManager<E> weightManager;
-
     public Graph() {}
-
     public Graph(WeightManager<E> weightManager) {
         this.weightManager = weightManager;
     }
@@ -39,8 +37,7 @@ public abstract class Graph<V, E> {
 
     // Graph5
     public abstract Map<V, PathInfo<V, E>> shortestPath(V begin);
-
-
+    public abstract Map<V, Map<V, PathInfo<V, E>>> shortestPath();
 
 
 

@@ -82,11 +82,30 @@ public class Main {
     @Test
     public void dijkstra() {
         Graph<Object, Double> directGraph = directGraph(Data.SP);
-        Map<Object, Double> paths = directGraph.shortestPathWithoutPathInfo("A");
+        Map<Object, Graph.PathInfo<Object, Double>> paths = directGraph.shortestPath("A");
         System.out.println(paths);
     }
 
+    @Test
+    public void bellmanFord() {
+        Graph<Object, Double> directGraph = directGraph(Data.BF_SP);
+        Map<Object, Graph.PathInfo<Object, Double>> paths = directGraph.shortestPath("A");
+        System.out.println(paths);
+    }
 
+    @Test
+    public void negativeCycle() {
+        Graph<Object, Double> directGraph = directGraph(Data.NEGATIVE_WEIGHT2);
+        Map<Object, Graph.PathInfo<Object, Double>> paths = directGraph.shortestPath(0);
+        System.out.println(paths);
+    }
+
+    @Test
+    public void floyd() {
+        Graph<Object, Double> directGraph = directGraph(Data.BF_SP);
+        Map<Object, Map<Object, Graph.PathInfo<Object, Double>>> paths = directGraph.shortestPath();
+        System.out.println(paths);
+    }
 
 
 

@@ -24,7 +24,7 @@ public class _509_Fib {
 
         int first = 0;
         int second = 1;
-        for (int i = 0; i < n - 1; i++) {
+        for (int i = 0; i < n - 1; i++) {// n-1 represent calculating fib(n), need addition's times
             int sum = first + second;
             first = second;
             second = sum;

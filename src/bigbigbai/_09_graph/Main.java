@@ -82,7 +82,7 @@ public class Main {
     @Test
     public void dijkstra() {
         Graph<Object, Double> directGraph = directGraph(Data.SP);
-        Map<Object, Double> paths = directGraph.shortestPath("A");
+        Map<Object, Double> paths = directGraph.shortestPathWithoutPathInfo("A");
         System.out.println(paths);
     }
 

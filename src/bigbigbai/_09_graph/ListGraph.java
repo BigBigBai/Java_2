@@ -4,7 +4,6 @@ import java.util.*;
 
 public class ListGraph<V, E> extends Graph<V, E> {
     public ListGraph() {}
-
     public ListGraph(WeightManager<E> weightManager) {
         super(weightManager);
     }
@@ -369,7 +368,7 @@ public class ListGraph<V, E> extends Graph<V, E> {
     }
 
     @Override
-    public Map<V, E> shortestPath(V begin) {
+    public Map<V, E> shortestPathWithoutPathInfo(V begin) {
         Vertex<V, E> beginVertex = vertices.get(begin);
         if (beginVertex == null) return null;
 
@@ -394,7 +393,7 @@ public class ListGraph<V, E> extends Graph<V, E> {
             Vertex<V, E> minVertex = minEntry.getKey();
             E minWeight = minEntry.getValue();
             selectedPaths.put(minVertex.value, minWeight);// B point flied
-            paths.remove(minVertex);
+            paths.remove(minVertex);// (NB)
 
             // Relaxation
             // flied point's all outEdge points to the start point's weight, calculate updated weight and previous weight
@@ -411,11 +410,63 @@ public class ListGraph<V, E> extends Graph<V, E> {
             }
         }
 
-
-
-
         return selectedPaths;
     }
+
+    @Override
+    public Map<V, PathInfo<V, E>> shortestPath(V begin) {
+        return Map.of();
+    }
+
+//    @Override
+//    public Map<V, PathInfo<V, E>> shortestPath(V begin) {
+//        Vertex<V, E> beginVertex = vertices.get(begin);
+//        if (beginVertex == null) return null;
+//
+//        /**
+//         * Map<V, E> paths = new HashMap<>();
+//         * paths.put("B", 10);
+//         * paths.put("C", 50);
+//         * paths.put("D", 30);
+//         * need to find weight-smallest, ready-to-fly point, first time find B point
+//         * If keep B point into map, it may be selected repeatedly
+//         * So need to add a map, to store flied point
+//         */
+//        Map<Vertex<V, E>, PathInfo<V, E>> paths = new HashMap<>();// red
+//        Map<V, PathInfo<V, E>> selectedPaths = new HashMap<>();// green
+//        //1.Init paths: put B, D, E into paths
+//        for (Edge<V, E> edge : beginVertex.outEdges) {
+//            PathInfo<V, E> path = new PathInfo<>();
+//            path.weight = edge.weight;
+//
+//
+//            paths.put(edge.to, edge.weight);
+//        }
+//
+//        while (!paths.isEmpty()) {
+//            Map.Entry<Vertex<V, E>, E> minEntry = getMinPath(paths);
+//            Vertex<V, E> minVertex = minEntry.getKey();
+//            E minWeight = minEntry.getValue();
+//            selectedPaths.put(minVertex.value, minWeight);// B point flied
+//            paths.remove(minVertex);// (NB)
+//
+//            // Relaxation
+//            // flied point's all outEdge points to the start point's weight, calculate updated weight and previous weight
+//            // if newWeight < oldWeight, demonstrate that find A point to other vertex's even shorter path, update path
+//            // else not update
+//            for (Edge<V, E> edge : minVertex.outEdges) {
+//                // calculate newWeight
+//                E newWeight = weightManager.add(minEntry.getValue(), edge.weight);
+//                // calculate oldWeight
+//                E oldWeight = paths.get(edge.to);
+//                if (oldWeight == null || weightManager.compare(newWeight, oldWeight) < 0) {
+//                    paths.put(edge.to, newWeight);
+//                }
+//            }
+//        }
+//
+//        return selectedPaths;
+//    }
 
     private Map.Entry<Vertex<V, E>, E> getMinPath(Map<Vertex<V, E>, E> paths) {
         Iterator<Map.Entry<Vertex<V, E>, E>> iterator = paths.entrySet().iterator();

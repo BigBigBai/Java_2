@@ -1,5 +1,10 @@
 package bigbigbai._12_recursion._02_distributed;
 
+/**
+ * Postman Thought
+ *  Choose or Not Choose
+ *
+ */
 public class PrintAllSubString {
     public static void main(String[] args) {
         printAllSubString("abc");

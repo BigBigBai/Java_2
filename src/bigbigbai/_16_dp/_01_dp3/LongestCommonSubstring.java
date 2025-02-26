@@ -1,4 +1,4 @@
-package bigbigbai._16_dp;
+package bigbigbai._16_dp._01_dp3;
 
 public class LongestCommonSubstring {
     public static void main(String[] args) {
@@ -7,10 +7,13 @@ public class LongestCommonSubstring {
         System.out.println(longestCommonSubstring1(s1, s2));
     }
 
+    /**
+     * DP
+     * sc: O(min{m, n})
+     */
     public static int longestCommonSubstring1(String s1, String s2) {
         char[] nums1 = s1.toCharArray();
         char[] nums2 = s2.toCharArray();
-
         char[] rowsNums = nums1, colsNums = nums2;
         if (nums1.length < nums2.length) {
             colsNums = nums1;
@@ -28,7 +31,7 @@ public class LongestCommonSubstring {
                     dp[j] = leftTop + 1;
                     max = Math.max(max, dp[j]);
                 } else {
-                    dp[j] = 0;
+                    dp[j] = 0; // must write
                 }
             }
         }
@@ -36,6 +39,10 @@ public class LongestCommonSubstring {
         return max;
     }
 
+    /**
+     * DP
+     * sc: O(m*n)
+     */
     public static int longestCommonSubstring(String s1, String s2) {
         char[] ch1 = s1.toCharArray();
         char[] ch2 = s2.toCharArray();

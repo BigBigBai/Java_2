@@ -18,8 +18,8 @@ public class _53_MaxSubArray {
     }
 
     private int maxSubArray3(int[] nums, int start, int end) {
-//        if (start == end) return nums[start];
-        if (end - start < 2) return nums[start];
+//        if (start == end) return nums[start];//[]
+        if (end - start < 2) return nums[start];//[)
 
         int mid = (start + end) >> 1;
 

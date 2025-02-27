@@ -1,6 +1,5 @@
 package bigbigbai._19_sort;
 
-
 import java.text.DecimalFormat;
 
 @SuppressWarnings("unchecked")

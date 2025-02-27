@@ -7,6 +7,9 @@ public class BruteForce {
         System.out.println(indexOf(text, pattern));
     }
 
+    /**
+     * tc: O(m*n)
+     */
     public static int indexOf(String text, String pattern) {
         int pi = 0;
         int ti = 0;
